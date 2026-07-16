@@ -1,84 +1,28 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gestión de Talleres Automotrices</title>
-
-    <style>
-        body{
-            font-family: Arial, sans-serif;
-            background:#f4f4f4;
-            margin:0;
-        }
-
-        header{
-            background:#0d6efd;
-            color:white;
-            padding:20px;
-            text-align:center;
-        }
-
-        nav{
-            background:#222;
-            padding:10px;
-            text-align:center;
-        }
-
-        nav a{
-            color:white;
-            text-decoration:none;
-            margin:15px;
-        }
-
-        main{
-            width:80%;
-            margin:auto;
-            background:white;
-            margin-top:20px;
-            padding:30px;
-            border-radius:10px;
-        }
-
-        footer{
-            background:#222;
-            color:white;
-            text-align:center;
-            padding:20px;
-            margin-top:20px;
-        }
-
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestion de Talleres</title>
+    
+    @vite(['resources/css/app.css', 'resources/js/app.js']) 
 
 </head>
-
 <body>
+        @include('partials.navbar')
 
-<header>
+        <div class="d-flex">
 
-<h1>Sistema de Gestión para Talleres Automotrices</h1>
+            @include('partials.sidebar')
 
-</header>
+            <div class="flex-grow-1 p-4">
 
-<nav>
+                @yield('contenido')
 
-<a href="/">Inicio</a>
+            </div>
 
-<a href="/fernando">Fernando</a>
+        </div>
 
-</nav>
-
-<main>
-
-@yield('contenido')
-
-</main>
-
-<footer>
-
-Programación Web II - Laravel 12
-
-</footer>
-
+        @include('partials.footer')
 </body>
-
 </html>

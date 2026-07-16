@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InicioController;
+
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
 });
 
-Route::get('/fernando', function () {
-    return view('fernando');
-});
+Route::get('/inicio', [InicioController::class, 'index'])->name('inicio');  
+Route::view('/dashboard', 'dashboard.index');
