@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Clientes')
+@section('title', 'Servicios')
 
 @section('content')
 
@@ -8,11 +8,13 @@
 
     <div class="d-flex justify-content-between align-items-center mb-3">
 
-        <h2>Listado de Clientes</h2>
+        <h2>Listado de Servicios</h2>
 
-        <a href="{{ route('clientes.create') }}"
+        <a href="{{ route('servicios.create') }}"
            class="btn btn-primary">
-            Nuevo Cliente
+
+            Nuevo Servicio
+
         </a>
 
     </div>
@@ -25,9 +27,11 @@
 
     @endif
     @if (session('error'))
+
         <div class="alert alert-danger">
             {{ session('error') }}
         </div>
+
     @endif
 
     <div class="table-responsive">
@@ -39,12 +43,9 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>CI</th>
-                    <th>Teléfono</th>
-                    <th>Correo</th>
-                    <th>Dirección</th>
-                    <th>Cuenta</th>
+                    <th>Tipo</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
                     <th>Acciones</th>
                 </tr>
 
@@ -52,52 +53,37 @@
 
             <tbody>
 
-                @forelse ($clientes as $cliente)
+                @forelse ($servicios as $servicio)
 
                     <tr>
 
-                        <td>{{ $cliente->id }}</td>
+                        <td>{{ $servicio->id }}</td>
 
-                        <td>{{ $cliente->nombre }}</td>
-
-                        <td>{{ $cliente->apellido }}</td>
-
-                        <td>{{ $cliente->ci }}</td>
-
-                        <td>{{ $cliente->telefono }}</td>
-
-                        <td>{{ $cliente->correo }}</td>
+                        <td>{{ $servicio->nombre }}</td>
 
                         <td>
-                            {{ $cliente->direccion ?? 'Sin dirección' }}
+                            {{ $servicio->tipoServicio->nombre }}
                         </td>
 
-                        {{-- Columna Cuenta --}}
                         <td>
-
-                            @if ($cliente->usuario)
-
-                                <span class="badge text-bg-success">
-                                    Activa
-                                </span>
-
-                            @else
-
-                                <span class="badge text-bg-warning">
-                                    Sin cuenta
-                                </span>
-
-                            @endif
-
+                            {{ $servicio->descripcion ?? 'Sin descripción' }}
                         </td>
 
-                        {{-- Columna Acciones --}}
+                        <td>
+                            Bs {{ number_format(
+                                $servicio->precio,
+                                2,
+                                ',',
+                                '.'
+                            ) }}
+                        </td>
+
                         <td>
 
                             <a
                                 href="{{ route(
-                                    'clientes.edit',
-                                    $cliente
+                                    'servicios.edit',
+                                    $servicio
                                 ) }}"
                                 class="btn btn-warning btn-sm">
 
@@ -107,8 +93,8 @@
 
                             <form
                                 action="{{ route(
-                                    'clientes.destroy',
-                                    $cliente
+                                    'servicios.destroy',
+                                    $servicio
                                 ) }}"
                                 method="POST"
                                 class="d-inline">
@@ -120,7 +106,7 @@
                                     type="submit"
                                     class="btn btn-danger btn-sm"
                                     onclick="return confirm(
-                                        '¿Desea eliminar este cliente?'
+                                        '¿Desea eliminar este servicio?'
                                     )">
 
                                     Eliminar
@@ -137,8 +123,10 @@
 
                     <tr>
 
-                        <td colspan="9" class="text-center">
-                            No existen clientes registrados.
+                        <td colspan="6" class="text-center">
+
+                            No existen servicios registrados.
+
                         </td>
 
                     </tr>

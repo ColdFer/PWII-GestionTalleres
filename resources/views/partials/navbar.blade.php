@@ -1,46 +1,52 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
 
-        <a class="navbar-brand" href="/">
-            Gestión Talleres
+    <div class="container-fluid">
+
+        <a
+            class="navbar-brand fw-bold"
+            href="{{ route('dashboard') }}">
+
+            🚗 Gestión Talleres
+
         </a>
 
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#menu">
+        <div class="ms-auto d-flex align-items-center gap-3 text-white">
 
-            <span class="navbar-toggler-icon"></span>
+            <span>
 
-        </button>
+                Bienvenido,
 
-        <div class="collapse navbar-collapse" id="menu">
+                <strong>
+                    {{ auth()->user()->name }}
+                </strong>
 
-            <ul class="navbar-nav ms-auto">
+                <span class="badge text-bg-light ms-1">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Inicio</a>
-                </li>
+                    {{ auth()->user()->rol?->nombre ?? 'Sin rol' }}
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Clientes</a>
-                </li>
+                </span>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Vehículos</a>
-                </li>
+            </span>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Repuestos</a>
-                </li>
+            <form
+                action="{{ route('logout') }}"
+                method="POST"
+                class="m-0">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Reportes</a>
-                </li>
+                @csrf
 
-            </ul>
+                <button
+                    type="submit"
+                    class="btn btn-outline-light">
+
+                    Cerrar sesión
+
+                </button>
+
+            </form>
 
         </div>
 
     </div>
+
 </nav>

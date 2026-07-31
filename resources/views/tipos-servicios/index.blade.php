@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Clientes')
+@section('title', 'Tipos de servicio')
 
 @section('content')
 
@@ -8,11 +8,13 @@
 
     <div class="d-flex justify-content-between align-items-center mb-3">
 
-        <h2>Listado de Clientes</h2>
+        <h2>Tipos de Servicio</h2>
 
-        <a href="{{ route('clientes.create') }}"
+        <a href="{{ route('tipos-servicios.create') }}"
            class="btn btn-primary">
-            Nuevo Cliente
+
+            Nuevo Tipo
+
         </a>
 
     </div>
@@ -25,9 +27,11 @@
 
     @endif
     @if (session('error'))
+
         <div class="alert alert-danger">
             {{ session('error') }}
         </div>
+
     @endif
 
     <div class="table-responsive">
@@ -39,12 +43,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>CI</th>
-                    <th>Teléfono</th>
-                    <th>Correo</th>
-                    <th>Dirección</th>
-                    <th>Cuenta</th>
+                    <th>Descripción</th>
                     <th>Acciones</th>
                 </tr>
 
@@ -52,52 +51,24 @@
 
             <tbody>
 
-                @forelse ($clientes as $cliente)
+                @forelse ($tiposServicios as $tipoServicio)
 
                     <tr>
 
-                        <td>{{ $cliente->id }}</td>
+                        <td>{{ $tipoServicio->id }}</td>
 
-                        <td>{{ $cliente->nombre }}</td>
-
-                        <td>{{ $cliente->apellido }}</td>
-
-                        <td>{{ $cliente->ci }}</td>
-
-                        <td>{{ $cliente->telefono }}</td>
-
-                        <td>{{ $cliente->correo }}</td>
+                        <td>{{ $tipoServicio->nombre }}</td>
 
                         <td>
-                            {{ $cliente->direccion ?? 'Sin dirección' }}
+                            {{ $tipoServicio->descripcion ?? 'Sin descripción' }}
                         </td>
 
-                        {{-- Columna Cuenta --}}
-                        <td>
-
-                            @if ($cliente->usuario)
-
-                                <span class="badge text-bg-success">
-                                    Activa
-                                </span>
-
-                            @else
-
-                                <span class="badge text-bg-warning">
-                                    Sin cuenta
-                                </span>
-
-                            @endif
-
-                        </td>
-
-                        {{-- Columna Acciones --}}
                         <td>
 
                             <a
                                 href="{{ route(
-                                    'clientes.edit',
-                                    $cliente
+                                    'tipos-servicios.edit',
+                                    $tipoServicio
                                 ) }}"
                                 class="btn btn-warning btn-sm">
 
@@ -107,8 +78,8 @@
 
                             <form
                                 action="{{ route(
-                                    'clientes.destroy',
-                                    $cliente
+                                    'tipos-servicios.destroy',
+                                    $tipoServicio
                                 ) }}"
                                 method="POST"
                                 class="d-inline">
@@ -120,7 +91,7 @@
                                     type="submit"
                                     class="btn btn-danger btn-sm"
                                     onclick="return confirm(
-                                        '¿Desea eliminar este cliente?'
+                                        '¿Desea eliminar este tipo de servicio?'
                                     )">
 
                                     Eliminar
@@ -137,8 +108,10 @@
 
                     <tr>
 
-                        <td colspan="9" class="text-center">
-                            No existen clientes registrados.
+                        <td colspan="4" class="text-center">
+
+                            No existen tipos de servicio registrados.
+
                         </td>
 
                     </tr>

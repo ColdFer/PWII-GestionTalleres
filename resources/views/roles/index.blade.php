@@ -1,18 +1,28 @@
 @extends('layouts.app')
 
-@section('title', 'Clientes')
+@section('title', 'Roles y permisos')
 
 @section('content')
 
 <div class="container mt-4">
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between
+                align-items-center mb-3">
 
-        <h2>Listado de Clientes</h2>
+        <div>
+            <h2>Roles y Permisos</h2>
 
-        <a href="{{ route('clientes.create') }}"
-           class="btn btn-primary">
-            Nuevo Cliente
+            <p class="text-muted mb-0">
+                Configure las funciones disponibles para cada rol.
+            </p>
+        </div>
+
+        <a
+            href="{{ route('roles.create') }}"
+            class="btn btn-primary">
+
+            Nuevo Rol
+
         </a>
 
     </div>
@@ -24,27 +34,27 @@
         </div>
 
     @endif
+
     @if (session('error'))
+
         <div class="alert alert-danger">
             {{ session('error') }}
         </div>
+
     @endif
 
     <div class="table-responsive">
 
-        <table class="table table-bordered table-hover align-middle">
+        <table class="table table-bordered
+                      table-hover align-middle">
 
             <thead class="table-dark">
 
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>CI</th>
-                    <th>Teléfono</th>
-                    <th>Correo</th>
-                    <th>Dirección</th>
-                    <th>Cuenta</th>
+                    <th>Rol</th>
+                    <th>Descripción</th>
+                    <th>Usuarios</th>
+                    <th>Permisos</th>
                     <th>Acciones</th>
                 </tr>
 
@@ -52,52 +62,51 @@
 
             <tbody>
 
-                @forelse ($clientes as $cliente)
+                @forelse ($roles as $role)
 
                     <tr>
 
-                        <td>{{ $cliente->id }}</td>
-
-                        <td>{{ $cliente->nombre }}</td>
-
-                        <td>{{ $cliente->apellido }}</td>
-
-                        <td>{{ $cliente->ci }}</td>
-
-                        <td>{{ $cliente->telefono }}</td>
-
-                        <td>{{ $cliente->correo }}</td>
-
                         <td>
-                            {{ $cliente->direccion ?? 'Sin dirección' }}
+                            <strong>{{ $role->nombre }}</strong>
                         </td>
 
-                        {{-- Columna Cuenta --}}
+                        <td>
+                            {{ $role->descripcion
+                                ?? 'Sin descripción' }}
+                        </td>
+
+                        <td>
+                            {{ $role->usuarios_count }}
+                        </td>
+
                         <td>
 
-                            @if ($cliente->usuario)
+                            @forelse ($role->permisos as $permiso)
 
-                                <span class="badge text-bg-success">
-                                    Activa
+                                <span
+                                    class="badge text-bg-secondary
+                                           me-1 mb-1">
+
+                                    {{ $permiso->nombre }}
+
                                 </span>
 
-                            @else
+                            @empty
 
-                                <span class="badge text-bg-warning">
-                                    Sin cuenta
+                                <span class="text-muted">
+                                    Sin permisos
                                 </span>
 
-                            @endif
+                            @endforelse
 
                         </td>
 
-                        {{-- Columna Acciones --}}
                         <td>
 
                             <a
                                 href="{{ route(
-                                    'clientes.edit',
-                                    $cliente
+                                    'roles.edit',
+                                    $role
                                 ) }}"
                                 class="btn btn-warning btn-sm">
 
@@ -107,8 +116,8 @@
 
                             <form
                                 action="{{ route(
-                                    'clientes.destroy',
-                                    $cliente
+                                    'roles.destroy',
+                                    $role
                                 ) }}"
                                 method="POST"
                                 class="d-inline">
@@ -120,7 +129,7 @@
                                     type="submit"
                                     class="btn btn-danger btn-sm"
                                     onclick="return confirm(
-                                        '¿Desea eliminar este cliente?'
+                                        '¿Desea eliminar este rol?'
                                     )">
 
                                     Eliminar
@@ -137,8 +146,12 @@
 
                     <tr>
 
-                        <td colspan="9" class="text-center">
-                            No existen clientes registrados.
+                        <td
+                            colspan="5"
+                            class="text-center">
+
+                            No existen roles registrados.
+
                         </td>
 
                     </tr>
