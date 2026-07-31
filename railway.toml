@@ -1,0 +1,10 @@
+[build]
+builder = "railpack"
+buildCommand = "npm run build"
+
+[deploy]
+preDeployCommand = [
+    "php artisan migrate --force",
+    "php artisan db:seed --force",
+    "php artisan optimize:clear"
+]
