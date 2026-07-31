@@ -213,41 +213,41 @@ docker compose up -d
 docker compose build app
 docker compose exec app php artisan migrate:status
 
-Evidencias
-
-Las imágenes se encuentran en screenshots/docker.
-
-Docker Desktop en ejecución
 
 
+## Evidencias de Docker
 
-Contenedores activos
+### Docker Desktop funcionando
 
+![Docker Desktop](./screenshots/docker/DockerDesktop.png)
 
+### Contenedores activos
 
-Migraciones ejecutadas
+![Contenedores Docker](./screenshots/docker/DockerComposePS.png)
 
+### Migraciones ejecutadas
 
+![Migraciones en Docker](./screenshots/docker/MigracionesDocker.png)
 
-Inicio de sesión
+### Pantalla de inicio de sesión
 
+![Login de la aplicación](./screenshots/docker/LoginDocker.png)
 
+### Panel de administración
 
-Panel de administración
+![Dashboard de la aplicación](./screenshots/docker/DashboardDocker.png)
 
+### Repositorio publicado en Docker Hub
 
+![Repositorio Docker Hub](./screenshots/docker/DockerHubRepositorio.png)
 
-Repositorio Docker Hub
+### Etiquetas publicadas en Docker Hub
 
+![Etiquetas Docker Hub](./screenshots/docker/DockerHubTags.png)
 
+### Publicación de la imagen Docker
 
-Etiquetas publicadas
-
-
-
-Publicación de la imagen
-
-
+![Docker Push](./screenshots/docker/DockerPush.png)
 
 Estructura Docker
 
