@@ -1,6 +1,26 @@
 # Sistema de Gestión de Talleres Automotrices
 
-Aplicación web desarrollada en Laravel para administrar los procesos principales de un taller automotriz.
+<p align="center">
+  <a href="https://youtu.be/kHuLrivZ1uQ">
+    <img src="https://img.youtube.com/vi/kHuLrivZ1uQ/hqdefault.jpg"
+         alt="Video de presentación y defensa del proyecto"
+         width="650">
+  </a>
+</p>
+
+<h2 align="center">🎥 Video de presentación y defensa</h2>
+
+<p align="center">
+  <strong>Conoce el funcionamiento, las tecnologías, la contenerización y el despliegue del sistema.</strong>
+</p>
+
+<p align="center">
+  ▶️ <a href="https://youtu.be/kHuLrivZ1uQ"><strong>Ver demostración completa en YouTube</strong></a>
+</p>
+
+---
+
+Aplicación web desarrollada en **Laravel** para administrar los procesos principales de un taller automotriz.
 
 El sistema permite gestionar usuarios, clientes, vehículos, servicios, órdenes de trabajo, mecánicos, repuestos, inventario, pagos y reportes.
 
